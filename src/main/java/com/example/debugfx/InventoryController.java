@@ -8,17 +8,17 @@ public class InventoryController {
 
     private final Connector connector;
     private GetInventoryTask getCsgoInventoryTask;
-    private final ObservableList<Item> itemObservableList;
+    private final ObListAdaptor obListAdaptor;
     private Timer timer;
 
-    public InventoryController(Connector connector, ObservableList<Item> itemObservableList) {
+    public InventoryController(Connector connector, ObListAdaptor obListAdaptor) {
         this.connector = connector;
-        this.itemObservableList = itemObservableList;
+        this.obListAdaptor = obListAdaptor;
     }
 
     public void start() {
         timer = new Timer();
-        getCsgoInventoryTask = new GetInventoryTask(connector, itemObservableList);
+        getCsgoInventoryTask = new GetInventoryTask(connector, obListAdaptor);
         timer.schedule(getCsgoInventoryTask, 0, 5 * 1000);
     }
 

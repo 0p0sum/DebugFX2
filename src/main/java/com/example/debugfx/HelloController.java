@@ -120,13 +120,11 @@ public class HelloController {
         tableViewTitle.setPlaceholder(new Label("Инвентарь не загружен"));
 
         ObservableList<Item> itemObservableList = FXCollections.<Item>observableArrayList();
+        ObListAdaptor obListAdaptor = new ObListAdaptor(itemObservableList);
 
-
-
-
-        InventoryController csgoInventoryController = new InventoryController(new Connector(apiKey, Game.CSGO), itemObservableList);
-        InventoryController dota2InventoryController = new InventoryController(new Connector(apiKey, Game.DOTA2), itemObservableList);
-        InventoryController tf2InventoryController = new InventoryController(new Connector(apiKey, Game.TF2), itemObservableList);
+        InventoryController csgoInventoryController = new InventoryController(new Connector(apiKey, Game.CSGO), obListAdaptor);
+        InventoryController dota2InventoryController = new InventoryController(new Connector(apiKey, Game.DOTA2), obListAdaptor);
+        InventoryController tf2InventoryController = new InventoryController(new Connector(apiKey, Game.TF2), obListAdaptor);
 
         csgoCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
 

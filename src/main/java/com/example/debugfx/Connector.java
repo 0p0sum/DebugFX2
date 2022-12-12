@@ -57,7 +57,7 @@ public class Connector {
         return response;
     }
 
-    public MarketResponse getInventory(ObservableList<Item> items ){
+    public MarketResponse getInventory(ObListAdaptor obListAdaptor ){
 
         URLRequester getInventoryRequester = null;
         MarketResponse response = new MarketResponse();
@@ -80,16 +80,7 @@ public class Connector {
                         String itemId = itemObject.getString("id");
                         String marketHashName = itemObject.getString("market_hash_name");
 
-                        boolean isBusy = false;
-
-                        for (Item item: items
-                             ) {
-                            if (item.getItemId().equals(itemId)) isBusy = true;
-                        }
-
-                        if (!isBusy){
-                            items.add(new Item(itemId, marketHashName));
-                        }else System.out.println("Есть в списке");
+                        if (!obListAdaptor.addItem(new Item(itemId, marketHashName))) System.out.println("Есть в списке");
                     }
 
                     boolean isSuccess = object.getBoolean("success");

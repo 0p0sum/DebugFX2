@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 public class RunnableTask implements Runnable {
 
     private final Connector connector;
-    private final ObservableList<Item> itemObservableList;
+    private final ObListAdaptor obListAdaptor;
     private boolean inventoryUpdate = false;
 
-    public RunnableTask(Connector connector, ObservableList<Item> itemObservableList) {
+    public RunnableTask(Connector connector, ObListAdaptor obListAdaptor) {
         this.connector = connector;
-        this.itemObservableList = itemObservableList;
+        this.obListAdaptor = obListAdaptor;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RunnableTask implements Runnable {
             System.out.println("Инвентарь обновлён " + inventoryUpdateResponse.isSuccessful() + " " + connector.getGame());
         }
 
-        getInventoryResponse = connector.getInventory(itemObservableList);
+        getInventoryResponse = connector.getInventory(obListAdaptor);
         if (getInventoryResponse.isSuccessful()) {
             System.out.println("Инвентарь загружен " + getInventoryResponse.isSuccessful() + " " + connector.getGame());
         } else System.out.println("Инвентарь загружен " + getInventoryResponse.isSuccessful() + " " + connector.getGame());

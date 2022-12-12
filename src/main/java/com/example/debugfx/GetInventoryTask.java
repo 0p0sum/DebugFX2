@@ -7,12 +7,12 @@ import java.util.TimerTask;
 public class GetInventoryTask extends TimerTask {
 
     private final Connector connector;
-    private final ObservableList<Item> itemObservableList;
+    private final ObListAdaptor obListAdaptor;
     private boolean inventoryUpdate = false;
 
-    public GetInventoryTask(Connector connector, ObservableList<Item> itemObservableList) {
+    public GetInventoryTask(Connector connector, ObListAdaptor obListAdaptor) {
         this.connector = connector;
-        this.itemObservableList = itemObservableList;
+        this.obListAdaptor = obListAdaptor;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class GetInventoryTask extends TimerTask {
             System.out.println("Инвентарь обновлён " + inventoryUpdateResponse.isSuccessful() + " " + connector.getGame());
         }
 
-        getInventoryResponse = connector.getInventory(itemObservableList);
+        getInventoryResponse = connector.getInventory(obListAdaptor);
         if (getInventoryResponse.isSuccessful()) {
             System.out.println("Инвентарь загружен " + getInventoryResponse.isSuccessful() + " " + connector.getGame());
             this.cancel();
