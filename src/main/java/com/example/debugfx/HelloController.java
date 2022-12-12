@@ -115,11 +115,13 @@ public class HelloController {
         comboBox.setEditable(false);
 ///////////////////////////////////////////////////////////////////////
 
-        String apiKey = "slwR411N3klAG74v09VwET05b3A3T8S";
+        String apiKey = "8KOXCv2h0729r1qYuuw5z09vRFtM35y";
 
         tableViewTitle.setPlaceholder(new Label("Инвентарь не загружен"));
 
         ObservableList<Item> itemObservableList = FXCollections.<Item>observableArrayList();
+
+
 
 
         InventoryController csgoInventoryController = new InventoryController(new Connector(apiKey, Game.CSGO), itemObservableList);

@@ -10,6 +10,10 @@ public class Item {
 
     String itemId;
 
+    public String getItemId() {
+        return itemId;
+    }
+
     Game game;
 
     public Item(String itemId, String marketHashName) {
