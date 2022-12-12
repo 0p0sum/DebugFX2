@@ -132,6 +132,7 @@ public class HelloController {
                 csgoInventoryController.start();
             } else {
                 csgoInventoryController.stop();
+                System.out.println("test");
             }
 
         });
