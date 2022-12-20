@@ -9,7 +9,7 @@ public class ObListAdaptor {
         this.observableList = observableList;
     }
 
-    public Item getItem(String itemId){
+    public Item getItemByItemID(String itemId){
 
         for (Item itemO :observableList
              ) {

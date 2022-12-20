@@ -50,6 +50,8 @@ public class HelloController {
     @FXML
     TableColumn<Item, String> marketHashNameColumn;
     @FXML
+    TableColumn<Item, ItemStatus> statusColumn;
+    @FXML
     CheckBox csgoCheckBox, dota2CheckBox, tf2CheckBox;
 
     ObservableList<Users> list = FXCollections.<Users>observableArrayList();
@@ -115,7 +117,7 @@ public class HelloController {
         comboBox.setEditable(false);
 ///////////////////////////////////////////////////////////////////////
 
-        String apiKey = "8KOXCv2h0729r1qYuuw5z09vRFtM35y";
+        String apiKey = "4xk9oR1aBf74wzV0c2b8Uzc4VQXftbV";
 
         tableViewTitle.setPlaceholder(new Label("Инвентарь не загружен"));
 
@@ -177,6 +179,26 @@ public class HelloController {
         marketHashNameColumn.setCellValueFactory(
                 cellData -> cellData.getValue().marketHashNameProperty()
         );
+
+        statusColumn.setCellValueFactory(
+                cellData-> cellData.getValue().statusObjectProperty()
+        );
+
+        statusColumn.setCellFactory(TextFieldTableCell.forTableColumn(
+                new StringConverter<>() {
+                    @Override
+                    public String toString(ItemStatus object) {
+                        return object == null ? "fail" : object.getStringName();
+                    }
+
+                    @Override
+                    public ItemStatus fromString(String string) {
+                        return null;
+                    }
+                }
+        ));
+
+
 
     }
 

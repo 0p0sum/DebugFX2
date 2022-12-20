@@ -1,12 +1,13 @@
 package com.example.debugfx;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Item {
-    StringProperty marketHashName;
-
-    ItemStatus itemStatus;
+    private final StringProperty marketHashName;
+    private ObjectProperty<ItemStatus> statusObjectProperty;
 
     String itemId;
 
@@ -19,7 +20,7 @@ public class Item {
     public Item(String itemId, String marketHashName) {
         this.itemId = itemId;
         this.marketHashName = new SimpleStringProperty(marketHashName);
-        this.itemStatus = ItemStatus.IN_INVENTORY;
+        this.statusObjectProperty = new SimpleObjectProperty<>(ItemStatus.IN_INVENTORY);
 
     }
 
@@ -29,11 +30,15 @@ public class Item {
     public StringProperty marketHashNameProperty(){
         return marketHashName;
     }
+
+    public ObjectProperty<ItemStatus> statusObjectProperty() {
+        return statusObjectProperty;
+    }
+    public void setItemStatus(ItemStatus status){
+        this.statusObjectProperty.setValue(status);
+    }
 }
 
-enum ItemStatus{
-    IN_INVENTORY
-}
 enum Game{
     DOTA2{
         final String appId = "570";
